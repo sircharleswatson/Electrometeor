@@ -1,5 +1,4 @@
 # Electrometeor
-_________
 
 ## Overview
 Electrometeor combines **[Electron](http://electron.atom.io)** and **[Meteor](http://www.meteor.com)** to allow you to easily create desktop applications that work both 100% offline & online.
@@ -33,22 +32,24 @@ When you're ready, you can build your app for distribution by simply running `./
 In it's current form, Electrometeor is meant to be very simple. If you wish to develop the Electron side of things further in your app, please refer to their wonderful [docs](https://github.com/atom/electron/tree/master/docs).
 
 ## Goals for Electrometeor
+
 My goal for Electrometeor is to make it the best boilerplate for making desktop applications with Meteor. It is very simple at the moment but I intend on adding more features that Electron has in place for easily integrating apps with the desktop.
-___
+
 ### Examples
 If you use Electrometeor, please let me know and I will add your example here!
-___
+
+-----------
 ### Need Help?
 Right now, I do not know much about Electron specifically but I can try to answer any questions you may have. I'm also available for any questions you may have regarding Meteor. You can contact me through Gitter in the Electrometeor room or via direct message.
 
 [![Gitter](https://img.shields.io/badge/GITTER-join%20chat-green.svg?style=flat-square)](https://gitter.im/sircharleswatson/Electrometeor)
 
 #### TODO
-____
+----------
 * [] Decide TODOS
 
 #### Credits
-____
+------------
 Electrometeor is mostly made possible by reusing code from the [Kitematic](https://github.com/kitematic/kitematic) app. Also many thanks to GitHub for creating **[Electron](http://electron.atom.io)** and to MDG for all the work they do on **[Meteor](http://meteor.com)**
 
 
