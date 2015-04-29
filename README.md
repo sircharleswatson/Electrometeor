@@ -40,7 +40,7 @@ If you use Electrometeor, please let me know and I will add your example here!
 ### Need Help?
 Right now, I do not know much about Electron specifically but I can try to answer any questions you may have. I'm also available for any questions you may have regarding Meteor. You can contact me through Gitter in the Electrometeor room or via direct message.
 
-[![Gitter](https://img.shields.io/badge/GITTER-join%20chat-green.svg?style=flat-square)](https://gitter.im/sircharleswatson/Electrometeor)
+[![Join the chat at https://gitter.im/sircharleswatson/Electrometeor](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/sircharleswatson/Electrometeor?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 #### TODO
 * [ ] Decide TODOS
