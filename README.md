@@ -37,18 +37,15 @@ My goal for Electrometeor is to make it the best boilerplate for making desktop 
 ### Examples
 If you use Electrometeor, please let me know and I will add your example here!
 
------------
 ### Need Help?
 Right now, I do not know much about Electron specifically but I can try to answer any questions you may have. I'm also available for any questions you may have regarding Meteor. You can contact me through Gitter in the Electrometeor room or via direct message.
 
 [![Gitter](https://img.shields.io/badge/GITTER-join%20chat-green.svg?style=flat-square)](https://gitter.im/sircharleswatson/Electrometeor)
 
 #### TODO
-----------
 * [] Decide TODOS
 
 #### Credits
-------------
 Electrometeor is mostly made possible by reusing code from the [Kitematic](https://github.com/kitematic/kitematic) app. Also many thanks to GitHub for creating **[Electron](http://electron.atom.io)** and to MDG for all the work they do on **[Meteor](http://meteor.com)**
 
 
