@@ -43,7 +43,7 @@ Right now, I do not know much about Electron specifically but I can try to answe
 [![Gitter](https://img.shields.io/badge/GITTER-join%20chat-green.svg?style=flat-square)](https://gitter.im/sircharleswatson/Electrometeor)
 
 #### TODO
-* [] Decide TODOS
+* [ ] Decide TODOS
 
 #### Credits
 Electrometeor is mostly made possible by reusing code from the [Kitematic](https://github.com/kitematic/kitematic) app. Also many thanks to GitHub for creating **[Electron](http://electron.atom.io)** and to MDG for all the work they do on **[Meteor](http://meteor.com)**
