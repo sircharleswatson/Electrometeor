@@ -1,5 +1,4 @@
 # Electrometeor
-
 ## Overview
 Electrometeor combines **[Electron](http://electron.atom.io)** and **[Meteor](http://www.meteor.com)** to allow you to easily create desktop applications that work both 100% offline & online.
 
