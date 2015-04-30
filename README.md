@@ -38,6 +38,8 @@ My goal for Electrometeor is to create the best desktop application boilerplate 
 If you use Electrometeor, please let me know and I will add your example here!
 
 ##### Electrometeor
+![Electrometeor](https://github.com/sircharleswatson/Electrometeor/blob/master/electrometeor.gif)
+
 Electrometeor comes with a basic example to demonstrate the reactivity of Meteor. This is the same example provided in all Meteor applications, with minor modifications to demonstrate _offline_ desktop functionality.
 
 ### Need Help?
