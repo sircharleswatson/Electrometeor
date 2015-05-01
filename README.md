@@ -2,7 +2,7 @@
 ## Overview
 Electrometeor combines **[Electron](http://electron.atom.io)** and **[Meteor](http://www.meteor.com)** to allow you to easily create desktop applications that work both 100% offline & online.
 
-(**Disclaimer:** Electrometeor is currently only supported on Mac. Linux and Windows support coming soon)
+(**Disclaimer:** Electrometeor currently only supports Mac OSX, with partial functionality for Linux.)
 
 ## Getting Started
 
@@ -27,7 +27,7 @@ While the `run.sh` script is active, you should be able to see any changes you m
 Development of your Meteor application is pretty much the same as usual. There are, however, some things you can do that you wouldn't normally be able to do with a web app. For example, you could use [node-applescript](https://github.com/TooTallNate/node-applescript) on the Meteor server to create an iTunes controller.
 
 #### Deploying your Meteor application
-When you're ready, you can build your app for distribution by simply running `./script/dist.sh`.
+When you're ready, you can build your app for distribution by simply running `./script/dist.sh`. (Currently only works for Mac)
 
 ### Working with Electron
 In its current form, Electrometeor is meant to be very simple. If you wish to develop the Electron side of things further in your app, please refer to their wonderful [docs](https://github.com/atom/electron/tree/master/docs).
