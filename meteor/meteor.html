@@ -1,0 +1,17 @@
+<head>
+  <title>app</title>
+</head>
+
+<body>
+  <h1>Welcome to Meteor!</h1>
+
+  {{> hello}}
+</body>
+
+<template name="hello">
+  <button>Click Me</button>
+  <p>Number of fruits in DB: {{counter}}</p>
+  {{#each fruits}}
+    {{fruit}}
+  {{/each}}
+</template>
