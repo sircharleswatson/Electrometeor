@@ -167,7 +167,9 @@ app.on('activate-with-no-open-windows', function () {
 // Emitted when Electron has done all of the initialization.
 app.on('ready', function () {
   start(function (url, nodeChild, mongoChild) {
-
+    var cleanup = function () {
+      app.quit();
+    }
     // Create the browser window.
     var windowOptions = {
       width: 800,
@@ -179,7 +181,7 @@ app.on('ready', function () {
     mainWindow.focus();
     mainWindow.loadUrl(url);
 
-    process.on('uncaughtException', app.quit);
+    process.on('uncaughtException', cleanup);
 
     // Emitted when all windows have been closed and the application will quit. 
     // Calling event.preventDefault() will prevent the default behaviour, which is 
@@ -192,6 +194,8 @@ app.on('ready', function () {
 
       if (mongoChild)
         mongoChild.kill();
+
+      process.exit();
     });
   });
 });
