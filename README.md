@@ -2,6 +2,8 @@
 ## Overview
 Electrometeor combines **[Electron](http://electron.atom.io)** and **[Meteor](http://www.meteor.com)** to allow you to easily create desktop applications that work both 100% offline & online.
 
+(**Disclaimer:** Electrometeor is currently only supported on Mac. Linux and Windows support coming soon)
+
 ## Getting Started
 
 In order to get started, you'll need to clone this repo to `<your-app>` then use the setup script to prepare your app:
@@ -48,7 +50,9 @@ Right now, I do not know much about Electron specifically, but I can try to answ
 [![Join the chat at https://gitter.im/sircharleswatson/Electrometeor](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/sircharleswatson/Electrometeor?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 #### TODO
-* [ ] Decide TODOS
+* [ ] Linux Support
+* [ ] Windows Support
+* [ ] Menus
 
 #### Credits
 Electrometeor is mostly made possible by reusing code from the [Kitematic](https://github.com/kitematic/kitematic) app. Also many thanks to GitHub for creating **[Electron](http://electron.atom.io)** and to MDG for all the work they do on **[Meteor](http://meteor.com)**
