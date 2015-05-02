@@ -53,6 +53,7 @@ Right now, I do not know much about Electron specifically, but I can try to answ
 * [ ] Linux Support
 * [ ] Windows Support
 * [ ] Menus
+* [ ] Use [ShellJS](https://github.com/arturadib/shelljs) instead of bash scripts.
 
 #### Credits
 Electrometeor is mostly made possible by reusing code from the [Kitematic](https://github.com/kitematic/kitematic) app. Also many thanks to GitHub for creating **[Electron](http://electron.atom.io)** and to MDG for all the work they do on **[Meteor](http://meteor.com)**
