@@ -45,7 +45,7 @@ If you use Electrometeor, please let me know and I will add your example here!
 Electrometeor comes with a basic example to demonstrate the reactivity of Meteor. This is the same example provided in all Meteor applications, with minor modifications to demonstrate _offline_ desktop functionality.
 
 ### Need Help?
-Right now, I do not know much about Electron specifically, but I can try to answer any questions you may have. I'm also available for any questions you may have regarding Meteor. You can contact me through Gitter in the Electrometeor room or via direct message.
+Right now, I do not know much about Electron specifically, but I can try to answer any questions you may have. I'm also available for any questions you may have regarding Meteor. You can contact me through Gitter in the Electrometeor room or via direct message. Or leave a comment on the [Electrometeor Blog](https://sircharleswatson.github.io/2015/04/30/Electrometeor-Build-Desktop-Applications-With-Electron-Meteor.html) article.
 
 [![Join the chat at https://gitter.im/sircharleswatson/Electrometeor](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/sircharleswatson/Electrometeor?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
@@ -54,6 +54,8 @@ Right now, I do not know much about Electron specifically, but I can try to answ
 * [ ] Windows Support
 * [ ] Menus
 * [ ] Use [ShellJS](https://github.com/arturadib/shelljs) instead of bash scripts.
+
+#### About
 
 #### Credits
 Electrometeor is mostly made possible by reusing code from the [Kitematic](https://github.com/kitematic/kitematic) app. Also many thanks to GitHub for creating **[Electron](http://electron.atom.io)** and to MDG for all the work they do on **[Meteor](http://meteor.com)**
