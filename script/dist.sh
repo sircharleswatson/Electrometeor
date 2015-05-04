@@ -29,13 +29,14 @@ cd $BASE
 rm -rf ./dist/osx
 mkdir -p ./dist/osx
 
-DIST_APP=Electrometeor.app
+DIST_NAME=Electrometeor
+DIST_APP=$DIST_NAME.app
 
 cecho "-----> Creating $DIST_APP..." $blue
 find cache/electron -name "debug\.log" -print0 | xargs -0 rm -rf
 cp -R cache/electron/Electron.app dist/osx/
 mv dist/osx/Electron.app dist/osx/$DIST_APP
-mv dist/osx/$DIST_APP/COntents/MacOS/Electron dist/osx/$DIST_APP/Contents/MacOS/Electrometeor
+mv dist/osx/$DIST_APP/Contents/MacOS/Electron dist/osx/$DIST_APP/Contents/MacOS/$DIST_NAME
 mkdir -p dist/osx/$DIST_APP/Contents/Resources/app
 
 cecho "-----> Copying meteor bundle into $DIST_APP..." $blue
@@ -58,10 +59,10 @@ chmod -R u+w dist/osx/$DIST_APP/Contents/Resources/app/bundle
 
 cecho "-----> Updating Info.plist version to $VERSION" $blue
 /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $VERSION" $BASE/dist/osx/$DIST_APP/Contents/Info.plist
-/usr/libexec/PlistBuddy -c "Set :CFBundleDisplayName Electrometeor" $BASE/dist/osx/$DIST_APP/Contents/Info.plist
-/usr/libexec/PlistBuddy -c "Set :CFBundleName Electrometeor" $BASE/dist/osx/$DIST_APP/Contents/Info.plist
+/usr/libexec/PlistBuddy -c "Set :CFBundleDisplayName $DIST_NAME" $BASE/dist/osx/$DIST_APP/Contents/Info.plist
+/usr/libexec/PlistBuddy -c "Set :CFBundleName $DIST_NAME" $BASE/dist/osx/$DIST_APP/Contents/Info.plist
 /usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier com.electrometeor.electrometeor" $BASE/dist/osx/$DIST_APP/Contents/Info.plist
-/usr/libexec/PlistBuddy -c "Set :CFBundleExecutable Electrometeor" $BASE/dist/osx/$DIST_APP/Contents/Info.plist
+/usr/libexec/PlistBuddy -c "Set :CFBundleExecutable $DIST_NAME" $BASE/dist/osx/$DIST_APP/Contents/Info.plist
 
 if [ -f $DIR/sign.sh ]; then
   cecho "-----> Signing app file...." $blue
@@ -70,8 +71,8 @@ fi
 
 cd $BASE/dist/osx
 cecho "-----> Creating distributable zip file...." $blue
-ditto -c -k --sequesterRsrc --keepParent $DIST_APP Electrometeor-$VERSION.zip
+ditto -c -k --sequesterRsrc --keepParent $DIST_APP $DIST_NAME-$VERSION.zip
 
 cecho "Done." $green
-cecho "Electrometeor app available at dist/osx/$DIST_APP" $green
-cecho "Electrometeor zip distribution available at dist/osx/Electrometeor-$VERSION.zip" $green
+cecho "$DIST_NAME app available at dist/osx/$DIST_APP" $green
+cecho "$DIST_NAME zip distribution available at dist/osx/$DIST_NAME-$VERSION.zip" $green
