@@ -2,4 +2,7 @@
   "name": "Electrometeor",
   "version": "0.1.1",
   "main": "index.js"
+  "optionalDependencies": {
+    "eslint": "^0.20.0"
+  }
 }

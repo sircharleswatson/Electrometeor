@@ -3,28 +3,23 @@ var os = require('os');
 var fs = require('fs');
 var net = require('net');
 var path = require('path');
-var exec = childProcess.exec
-
-var autoUpdater = require('auto-updater');
-var ipc = require('ipc');
+var exec = childProcess.exec;
 
 /* App Name */
 /* -------- */
-// Be sure to change this or your data might be stored 
+// Be sure to change this or your data might be stored
 // somewhere you don't want it to be.
-var appName = "MyElectrometeorApp";
+var appName = 'MyElectrometeorApp';
 
 
 var app = require('app'); // Module to control application life.
 var BrowserWindow = require('browser-window'); // Module to create native browser window.
 
 var dirname = __dirname;
-console.log(dirname); // The name of the directory that the currently executing script resides in.
-
 
 // Before starting a local server, freePort will find an available port by letting
 // the OS find it.
-var freePort = function (callback) {
+function freePort (callback) {
   var server = net.createServer();
   var port = 0;
 
@@ -71,7 +66,7 @@ var start = function (callback) {
         // Be sure to change the PURPOSE to be the name of your app
         var command = 'kill $(ps aux -e | grep PURPOSE=MY_ELECTROMETEOR_APP | awk \'{print $2\') && rm ' + path.join(dataPath, 'mongod.lock');
 
-        childProcess.exec(command, function (err, stdout, stderr) {
+        exec(command, function (err, stdout, stderr) {
           // Path to mongod command bundled with app.
           var mongodPath = path.join(dirname, 'resources', 'mongod');
 
