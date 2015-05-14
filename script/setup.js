@@ -19,7 +19,8 @@ var dir = __dirname;
 var base = path.normalize(path.join(dir, '..'));
 cd(dir);
 
-var nodeVersion = '0.12.2';
+var nodeVersion = '0.10.36';
+var npmVersion = '2.9.0'; // Only used on Windows.
 var mongoVersion = '2.6.9';
 var electronVersion = '0.25.1';
 
@@ -39,19 +40,20 @@ var removeExtension = function (fileName) {
   return fileName.slice(0, -(charsToSlice));
 };
 
-var onWindows = exec('where systeminfo || true', {silent: true}).output;
-onWindows = onWindows !== '';
-console.log('On Windows: ', onWindows);
+var onWindows = false;
+osName = exec('echo %OS% | tr "[:upper:]" "[:lower:]" | xargs echo -n', {silent: true}).output;
+if (osName.indexOf('windows') !== -1) {
+  osName = 'windows';
+  onWindows = true;
+} else {
+  osName = exec('uname -s | tr "[:upper:]" "[:lower:]" | xargs echo -n', {silent: true}).output;
+  onWindows = false;
+}
 
 if (onWindows) {
   machineType = exec('echo %PROCESSOR_ARCHITECTURE% | xargs echo -n', {silent: true}).output;
-  osName = exec('echo %OS% | tr "[:upper:]" "[:lower:]" | xargs echo -n', {silent: true}).output;
-  if (osName.indexOf('windows') !== -1) {
-    osName = 'win32';
-  }
 } else {
   machineType = exec('uname -m | xargs echo -n', {silent: true}).output;
-  osName = exec('uname -s | tr "[:upper:]" "[:lower:]" | xargs echo -n', {silent: true}).output;
 }
 
 console.log('OS Name: ', osName);
@@ -68,6 +70,7 @@ console.log('Architecture is ', arch);
 var electronFile = '';
 var mongoFile = '';
 var nodeFile = '';
+var npmFile = 'npm-' + npmVersion + '.zip';
 
 if (onWindows) {
 
@@ -157,11 +160,31 @@ if (!test('-f', nodeFile)) {
                + '/' + nodeFile;
   exec(nodeCurl);
   if (onWindows) {
+    mkdir('nodejs');
     cp('node.exe', base + '/resources/node.exe');
+    cp('node.exe', './nodejs/node.exe');
   } else {
     mkdir('node');
     exec('tar -xzf ' + nodeFile + ' --strip-components 1 -C node');
     cp('node/bin/node', base + '/resources/node');
     cp('node/LICENSE', base + '/resources/NODE_LICENSE.txt');
+  }
+}
+
+// Windows needs to download NPM because it's not included with Node.
+if (onWindows) {
+  if (!test('-f', npmFile)) {
+    echo('-----> Downloading NPM... (version: ' + npmVersion + ')');
+    var npmCurl = 'curl -L -o '
+                 + npmFile
+                 + ' https://github.com/npm/npm/archive/'
+                 + 'v' + npmVersion
+                 + '.zip';
+    exec(npmCurl);
+    var npmZip = new AdmZip(npmFile);
+    npmZip.extractAllTo('./nodejs/node_modules/', true);
+    mv('./nodejs/node_modules/npm-' + npmVersion, './nodejs/node_modules/npm');
+    cp('./nodejs/node_modules/npm/bin/npm', './nodejs');
+    cp('./nodejs/node_modules/npm/bin/npm.cmd', './nodejs');
   }
 }
