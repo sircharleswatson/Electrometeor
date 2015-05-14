@@ -6,11 +6,17 @@ Electrometeor combines **[Electron](http://electron.atom.io)** and **[Meteor](ht
 
 ## Getting Started
 #### Prerequisites
-##### Windows
-* [Cygwin](https://cygwin.com/) - Get that Linux feeling, on Windows ([here](http://smallbusiness.chron.com/run-cygwin-programs-cmdexe-50317.html) is a good article on getting it setup)
-
 ##### Mac & Linux
 * None
+
+
+##### Windows
+
+* [nvm-windows](https://github.com/coreybutler/nvm-windows) - A node.js version management utility for Windows.
+* [Cygwin](https://cygwin.com/) - Get that Linux feeling, on Windows ([here](http://smallbusiness.chron.com/run-cygwin-programs-cmdexe-50317.html) is a good article on getting it setup)
+* [Python][windows-python] ([`v2.7.3`][windows-python-v2.7.3] recommended, `v3.x.x` is __*not*__ supported)
+* Windows 7/8:
+    * Microsoft Visual Studio C++ 2012/13 for Windows Desktop ([Express][msvc2012] version works well)
 
 In order to get started, you'll need to clone this repo to `<your-app>` and run `npm install`
 ```sh
@@ -44,7 +50,20 @@ While the `run.js` script is active, you should be able to see any changes you m
 Development of your Meteor application is pretty much the same as usual. There are, however, some things you can do that you wouldn't normally be able to do with a web app. For example, you could use [node-applescript](https://github.com/TooTallNate/node-applescript) on the Meteor server to create an iTunes controller.
 
 #### Deploying your Meteor application
-When you're ready, you can build your app for distribution by simply running `./script/dist.sh`. (Currently only works for Mac)
+##### Mac & Linux
+
+When you're ready, you can build your app for distribution by running `node ./script/dist.js`.
+
+##### Windows
+
+Windows is a special child and needs lots of attention. These are the steps I have had to do in order to use the `dist.js` script.
+
+1. Use the Visual Studio command prompt included with Microsoft Visual Studio C++ 2012/13
+2. Before running the script, you need to run `nvm install 0.10.36`
+3. Then _use_ v0.10.36: `nvm use 0.10.36`
+4. Finally, run the script: `node ./script/dist.js`
+
+The Windows version of node does not ship with the binaries so if you try to build for distribution with the wrong version of node, you will run into issues with Fibers and `node-gyp`. Let me know if you hit any snags in the build/dist process and I'll try to address them as soon as possible.
 
 ### Working with Electron
 In its current form, Electrometeor is meant to be very simple. If you wish to develop the Electron side of things further in your app, please refer to their wonderful [docs](https://github.com/atom/electron/tree/master/docs).
@@ -67,14 +86,19 @@ Right now, I do not know much about Electron specifically, but I can try to answ
 [![Join the chat at https://gitter.im/sircharleswatson/Electrometeor](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/sircharleswatson/Electrometeor?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 #### TODO
-* [ ] Linux Distribution Support
-* [ ] Windows Distribution Support
+* [x] Linux Distribution Support
+* [x] Windows Distribution Support
 * [ ] Menus
 * [ ] Use [ShellJS](https://github.com/arturadib/shelljs) instead of bash scripts.
   * [x] setup.sh -> setup.js
   * [x] run.sh -> run.js
-  * [ ] dist.sh -> dist.js
+  * [x] dist.sh -> dist.js
   * [ ] colors.sh -> colors.js
 
 #### Credits
 Electrometeor is mostly made possible by reusing code from the [Kitematic](https://github.com/kitematic/kitematic) app. Also many thanks to GitHub for creating **[Electron](http://electron.atom.io)** and to MDG for all the work they do on **[Meteor](http://meteor.com)**
+
+
+[windows-python]: http://www.python.org/getit/windows
+[windows-python-v2.7.3]: http://www.python.org/download/releases/2.7.3#download
+[msvc2012]: http://go.microsoft.com/?linkid=9816758
