@@ -18,14 +18,18 @@ process.env.NODE_ENV = 'development';
 var dir = __dirname;
 var base = path.normalize(path.join(dir, '..'));
 
-var onWindows = exec('where systeminfo || true', {silent: true}).output !== '';
-
-var osName = '';
-if (onWindows) {
-  osName = exec('echo %OS% | tr "[:upper:]" "[:lower:]" | xargs echo -n', {silent: true}).output;
+var onWindows = false;
+var osName = exec('echo %OS% | tr "[:upper:]" "[:lower:]" | xargs echo -n', {silent: true}).output;
+if (osName.indexOf('windows') !== -1) {
+  osName = 'windows';
+  onWindows = true;
 } else {
   osName = exec('uname -s | tr "[:upper:]" "[:lower:]" | xargs echo -n', {silent: true}).output;
+  onWindows = false;
 }
+
+console.log('On Windows: ', onWindows);
+console.log(osName);
 
 cd(base + '/meteor');
 
