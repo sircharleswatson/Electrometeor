@@ -43,7 +43,7 @@ var removeExtension = function (fileName) {
 var onWindows = false;
 osName = exec('echo %OS% | tr "[:upper:]" "[:lower:]" | xargs echo -n', {silent: true}).output;
 if (osName.indexOf('windows') !== -1) {
-  osName = 'windows';
+  osName = 'win32';
   onWindows = true;
 } else {
   osName = exec('uname -s | tr "[:upper:]" "[:lower:]" | xargs echo -n', {silent: true}).output;
