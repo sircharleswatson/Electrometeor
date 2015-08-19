@@ -4,7 +4,7 @@
   "main": "index.js",
   "devDependencies": {
     "adm-zip": "^0.4.7",
-    "electron-rebuild": "^0.1.4",
+    "electron-rebuild": "^0.2.5",
     "shelljs": "^0.4.0"
   },
   "optionalDependencies": {

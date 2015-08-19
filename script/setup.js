@@ -22,7 +22,7 @@ cd(dir);
 var nodeVersion = '0.10.36';
 var npmVersion = '2.9.0'; // Only used on Windows.
 var mongoVersion = '2.6.9';
-var electronVersion = '0.25.1';
+var electronVersion = '0.30.4';
 
 var osName = '';
 var machineType = '';
