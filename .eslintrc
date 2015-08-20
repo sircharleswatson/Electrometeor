@@ -1,12 +1,25 @@
 {
-  "env": {
-    "browser": true,
-    "node": true,
-    "meteor": true,
-    "shelljs": true
-  },
-  "rules": {
-    "quotes": [1, "single"],
-    "no-unused-vars": 1
-  }
+    "rules": {
+        "indent": [2, 2, {"SwitchCase": 1}],
+        "quotes": [
+            2,
+            "single"
+        ],
+        "linebreak-style": [
+            2,
+            "unix"
+        ],
+        "semi": [
+            2,
+            "always"
+        ],
+        "no-console": 0
+    },
+    "env": {
+        "browser": true,
+        "node": true,
+        "shelljs": true,
+        "meteor": true
+    },
+    "extends": "eslint:recommended"
 }

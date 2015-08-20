@@ -1,6 +1,6 @@
 {
   "name": "Electrometeor",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "main": "index.js",
   "devDependencies": {
     "adm-zip": "^0.4.7",
@@ -8,6 +8,6 @@
     "shelljs": "^0.4.0"
   },
   "optionalDependencies": {
-    "eslint": "^0.20.0"
+    "eslint": "^1.2.0"
   }
 }
