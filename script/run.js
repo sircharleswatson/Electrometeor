@@ -28,8 +28,8 @@ if (osName.indexOf('windows') !== -1) {
   onWindows = false;
 }
 
-console.log('On Windows: ', onWindows);
-console.log(osName);
+echo('On Windows: ', onWindows);
+echo(osName);
 
 cd(base + '/meteor');
 
@@ -75,19 +75,19 @@ function killElectron () {
 // =========================
 meteor.stdout.setEncoding('utf8');
 meteor.stdout.on('data', function (data) {
-  console.log(data);
+  echo(data);
 });
 
 meteor.stderr.setEncoding('utf8');
 meteor.stderr.on('data', function (data) {
-  console.log('stderr: ', data);
+  echo('stderr: ', data);
 });
 
 // Electron
 // =========================
 electron.stdout.on('data', function(data) {
   if (!data === 'Cleaning up children.') {
-    console.log(data);
+    echo(data);
   }
 });
 

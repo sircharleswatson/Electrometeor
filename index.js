@@ -1,4 +1,4 @@
-/*eslint strict:0*/
+
 var childProcess = require('child_process');
 var os = require('os');
 var fs = require('fs');
@@ -15,9 +15,7 @@ var appName = 'Electrometeor';
 
 var app = require('app'); // Module to control application life.
 var BrowserWindow = require('browser-window'); // Module to create native browser window.
-
 var dirname = __dirname;
-console.log(dirname); // The name of the directory that the currently executing script resides in.
 
 // Before starting a local server, freePort will find an available port by letting
 // the OS find it.
@@ -37,17 +35,17 @@ function freePort (callback) {
 }
 
 
-// Write something about Start method
 function start (callback) {
+  var appPath = '';
+  var dataPath = '';
+  var bundlePath = '';
+
   if (process.env.NODE_ENV === 'development') {
     console.log('Running in Dev mode.');
     callback('http://localhost:3000');
   } else {
     process.stdout.write('Starting production server\n');
 
-    var appPath = '',
-        dataPath = '',
-        bundlePath = '';
     if (os.platform() === 'darwin') {
       appPath = path.join(process.env.HOME, 'Library/Application Support/', appName, '/');
       dataPath = path.join(appPath, 'data');
@@ -75,31 +73,34 @@ function start (callback) {
       fs.mkdirSync(bundlePath);
     }
 
-    freePort(function (err, webPort) {
-      freePort(function (err, mongoPort) {
+    freePort(function (errWebPort, webPort) {
+      freePort(function (errMongoPort, mongoPort) {
+
+        var command = '';
+
         console.log('MongoPort: ', mongoPort);
         console.log('WebPort: ', webPort);
 
-        // Be sure to change the PURPOSE to be the name of your app
-        var command = '';
         if (os.platform() === 'darwin' || os.platform === 'linux') {
           command = 'rm -rf ' + path.join(dataPath, 'mongod.lock');
         } else if (os.platform() === 'win32') {
-          childProcess.exec('rm -rf ' + path.join(dataPath, 'mongod.lock'));
+          exec('rm -rf ' + path.join(dataPath, 'mongod.lock'));
         }
 
-        childProcess.exec(command, function (err, stdout, stderr) {
+        exec(command, function () {
 
           // Path to mongod command bundled with app.
           var mongodPath = path.join(dirname, 'resources', 'mongod');
 
           // Arguments passed to mongod command.
           var mongodArgs = ['--bind_ip', '127.0.0.1', '--dbpath', dataPath, '--port', mongoPort, '--unixSocketPrefix', dataPath, '--smallfiles'];
+
           if (os.platform() === 'win32') {
             mongodArgs = ['--bind_ip', '127.0.0.1', '--dbpath', dataPath, '--port', mongoPort, '--smallfiles'];
           }
 
           // Start the Mongo process.
+          // Be sure to change the PURPOSE to be the name of your app
           var mongoChild = childProcess.spawn(mongodPath, mongodArgs, {
             env: {
               PURPOSE: 'MY_ELECTROMETEOR_APP'
@@ -112,8 +113,10 @@ function start (callback) {
           });
 
           var started = false;
+
           mongoChild.stdout.setEncoding('utf8');
           mongoChild.stdout.on('data', function (data) {
+
             console.log(data);
 
             if (data.indexOf('waiting for connections on port ' + mongoPort)) {

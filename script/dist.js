@@ -7,14 +7,14 @@
 // shell.echo('hello world');
 'use strict';
 
-console.log('Starting Distribution Script...');
 require('shelljs/global');
 var path = require('path');
-// var zipFolder = require('zip-folder');
-var AdmZip = require('adm-zip');
+// var AdmZip = require('adm-zip');
 
 // Auto-exit on errors
 config.fatal = true;
+
+echo('Starting Distribution Script...');
 
 
 // Get the directory of the current script
@@ -31,10 +31,10 @@ if (osName.indexOf('windows') !== -1) {
   onWindows = false;
 }
 
-console.log('On Windows: ', onWindows);
+echo('On Windows: ', onWindows);
 
 var npmPath = base + '/cache/node/bin/npm';
-var nodePath = base + '/cache/node/bin/node';
+var nodePath = base + '/cache/node/bin/node'; // This is apparently not being used anywhere
 var projectVersion = require('../package.json').version;
 
 var distName = 'Electrometeor';
@@ -44,6 +44,7 @@ if (onWindows) {
   nodePath = path.join(base, '/cache/nodejs/node.exe');
 }
 
+echo('Node path: ', nodePath);
 
 echo('-----> Building bundle from Meteor app, this may take a few minutes');
 
@@ -67,7 +68,7 @@ function buildDist (os, name) {
   switch(os) {
 
     case 'windows':
-      console.log('Windows build');
+      echo('Windows build');
 
       app = name + '.exe';
       cp('-R', './cache/electron', './dist/windows');
@@ -77,7 +78,7 @@ function buildDist (os, name) {
       break;
 
     case 'linux':
-      console.log('Linux build');
+      echo('Linux build');
 
       app = name;
       cp('-R', './cache/electron', './dist/linux');
@@ -87,7 +88,7 @@ function buildDist (os, name) {
       break;
 
     case 'osx':
-      console.log('Mac build');
+      echo('Mac build');
 
       app = name + '.app';
       cp('-R', './cache/electron/Electron.app', './dist/' + osName);
@@ -158,24 +159,25 @@ function copyBinaryFiles (os, name) {
   }
 }
 
-function copyIcon (os, name) {
-  switch(os) {
+// CURRENTLY NOT BEING USED
+// function copyIcon (os, name) {
+//   switch(os) {
 
-    case 'windows':
-    case 'linux':
-      // Not sure if this is the right place to put the .icns file
-      // May need to have a different extension.
-      cp('electrometeor.icns', './dist/' + os + '/' + name + '/resources/electron.icns');
-      break;
+//     case 'windows':
+//     case 'linux':
+//       // Not sure if this is the right place to put the .icns file
+//       // May need to have a different extension.
+//       cp('electrometeor.icns', './dist/' + os + '/' + name + '/resources/electron.icns');
+//       break;
 
-    case 'osx':
-      cp('electrometeor.icns', './dist/osx/' + name + '.app/Contents/Resources/electron.icns');
-      break;
+//     case 'osx':
+//       cp('electrometeor.icns', './dist/osx/' + name + '.app/Contents/Resources/electron.icns');
+//       break;
 
-    default:
-      throw new Error('Unrecognized Operating System. Exiting...');
-  }
-}
+//     default:
+//       throw new Error('Unrecognized Operating System. Exiting...');
+//   }
+// }
 
 function updatePlist (name) {
   echo('-----> Updating Info.plist version to ' + projectVersion);
@@ -186,31 +188,32 @@ function updatePlist (name) {
   exec('/usr/libexec/PlistBuddy -c "Set :CFBundleExecutable ' + distName + '" ' + base + '/dist/osx/' + name + '.app/Contents/Info.plist');
 }
 
-function createZipFile (os, name) {
-  var app = '';
-  var zippedApp = '';
-  switch(os) {
+// CURRENTLY NOT BEING USED
+// function createZipFile (os, name) {
+//   var app = '';
+//   var zippedApp = '';
+//   switch(os) {
 
-    case 'windows':
-    case 'linux':
-      app = base + '/dist/' + os + '/' + name;
-      zippedApp = base + '/dist/' + os + '/' + name + '-' + projectVersion + '.zip';
-      var zip = new AdmZip();
+//     case 'windows':
+//     case 'linux':
+//       app = base + '/dist/' + os + '/' + name;
+//       zippedApp = base + '/dist/' + os + '/' + name + '-' + projectVersion + '.zip';
+//       var zip = new AdmZip();
 
-      zip.addLocalFolder(app);
-      zip.writeZip(app, zippedApp);
-      break;
+//       zip.addLocalFolder(app);
+//       zip.writeZip(app, zippedApp);
+//       break;
 
-    case 'osx':
-      app = base + '/dist/' + os + '/' + name + '.app';
-      zippedApp = base + '/dist/' + os + '/' + name + '-' + projectVersion + '.zip';
-      exec('ditto -c -k --sequesterRsrc --keepParent ' + app + ' ' + zippedApp);
-      break;
+//     case 'osx':
+//       app = base + '/dist/' + os + '/' + name + '.app';
+//       zippedApp = base + '/dist/' + os + '/' + name + '-' + projectVersion + '.zip';
+//       exec('ditto -c -k --sequesterRsrc --keepParent ' + app + ' ' + zippedApp);
+//       break;
 
-    default:
-      throw new Error('Unrecognized Operating System. Exiting...');
-  }
-}
+//     default:
+//       throw new Error('Unrecognized Operating System. Exiting...');
+//   }
+// }
 
 
 

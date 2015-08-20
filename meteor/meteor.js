@@ -1,3 +1,5 @@
+/* global Fruits:true */
+
 Fruits = new Mongo.Collection('fruits');
 
 if (Meteor.isClient) {
@@ -6,7 +8,7 @@ if (Meteor.isClient) {
 
   Template.hello.helpers({
     counter: function () {
-      return Fruits.find().count()
+      return Fruits.find().count();
     },
     fruits: function () {
       return Fruits.find();

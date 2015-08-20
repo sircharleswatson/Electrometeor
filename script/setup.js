@@ -56,8 +56,8 @@ if (onWindows) {
   machineType = exec('uname -m | xargs echo -n', {silent: true}).output;
 }
 
-console.log('OS Name: ', osName);
-console.log('Machine Type: ', machineType);
+echo('OS Name: ', osName);
+echo('Machine Type: ', machineType);
 
 if (machineType === 'x86') {
   arch = '32-bit';
@@ -65,7 +65,7 @@ if (machineType === 'x86') {
   arch = '64-bit';
 }
 
-console.log('Architecture is ', arch);
+echo('Architecture is ', arch);
 
 var electronFile = '';
 var mongoFile = '';
@@ -139,7 +139,7 @@ if (!test('-f', mongoFile)) {
                 + mongoFile;
   exec(mongoCurl);
   if (onWindows) {
-    console.log('Unzipping MongoDB');
+    echo('Unzipping MongoDB');
     var mongoZip = new AdmZip(mongoFile);
     mongoZip.extractAllTo('./', true);
   } else {
