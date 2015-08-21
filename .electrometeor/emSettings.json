@@ -1,0 +1,13 @@
+{
+  "electron": {
+    "version": "0.30.4"
+  },
+  "node": {
+    "version": "0.10.36",
+    "npmVersion": "2.9.0"
+  },
+  "mongo": {
+    "version": "2.6.9"
+  }
+
+}

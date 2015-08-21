@@ -8,6 +8,7 @@
     "shelljs": "^0.4.0"
   },
   "optionalDependencies": {
-    "eslint": "^1.2.0"
+    "eslint": "^1.2.0",
+    "colors": "^1.1.2"
   }
 }
