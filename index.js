@@ -42,7 +42,10 @@ function start (callback) {
 
   if (process.env.NODE_ENV === 'development') {
     console.log('Running in Dev mode.');
-    callback('http://localhost:3000');
+    setTimeout(function() {
+      callback('http://localhost:3000');
+      console.log('after callback');
+    }, 2000);
   } else {
     process.stdout.write('Starting production server\n');
 
@@ -83,6 +86,8 @@ function start (callback) {
 
         if (os.platform() === 'darwin' || os.platform === 'linux') {
           command = 'rm -rf ' + path.join(dataPath, 'mongod.lock');
+          console.log("TESTINGGGGG: ", command)
+          exec(command);
         } else if (os.platform() === 'win32') {
           exec('rm -rf ' + path.join(dataPath, 'mongod.lock'));
         }
@@ -197,23 +202,26 @@ app.on('activate-with-no-open-windows', function () {
 
 // Emitted when Electron has done all of the initialization.
 app.on('ready', function () {
+  var windowOptions = {
+    width: 800,
+    height: 600,
+  };
+
+  mainWindow = new BrowserWindow(windowOptions);
+
   start(function (url, nodeChild, mongoChild) {
     console.log('App occupying ', url);
+
     var cleanup = function () {
       app.quit();
     };
-    // Create the browser window.
-    var windowOptions = {
-      width: 800,
-      height: 600,
-      resizeable: true,
-      frame: true
-    };
-    mainWindow = new BrowserWindow(windowOptions);
+
     mainWindow.focus();
-    mainWindow.loadUrl(url);
+    mainWindow.openDevTools();
+    mainWindow.loadUrl('http://localhost:3000');
 
     process.on('uncaughtException', cleanup);
+
 
     // Emitted when all windows have been closed and the application will quit.
     // Calling event.preventDefault() will prevent the default behaviour, which is

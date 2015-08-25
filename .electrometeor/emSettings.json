@@ -7,7 +7,7 @@
     "npmVersion": "2.9.0"
   },
   "mongo": {
-    "version": "2.6.9"
+    "version": "2.6.11"
   }
 
 }

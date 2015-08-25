@@ -13,6 +13,7 @@ var em = {};
 // Dependency versions
 em.electronVersion = electron.version;
 em.nodeVersion = node.version;
+em.npmVersion = node.npmVersion;
 em.mongoVersion = mongo.version;
 
 
@@ -26,11 +27,7 @@ em.cache = path.join(em.appBase, 'cache');
 em.sysPlatform = process.platform;
 em.sysArch = process.arch;
 em.bitType = em.sysArch === "x86" ? "32" : "64";
-em.isWindows = function () {
-
-  return em.sysPlatform === "win32" ? true : false;
-
-};
+em.onWindows = em.sysPlatform === "win32" ? true : false;
 
 
 // Functions
