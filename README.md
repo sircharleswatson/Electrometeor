@@ -2,6 +2,8 @@
 ## Overview
 Electrometeor combines **[Electron](http://electron.atom.io)** and **[Meteor](http://www.meteor.com)** to allow you to easily create desktop applications that work both 100% offline & online.
 
+###### UPDATE: October 14th, 2015 - I have too many things going on in my life right now to really give Electrometeor support and development the time and attention it deserves. I am not stopping it, but I will most likely be unresponsive for some time. Thank you all. Sorry for the inconvenience!
+
 ## Getting Started
 #### Prerequisites
 ##### Mac & Linux
